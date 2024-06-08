@@ -25,13 +25,36 @@ public class QuestionService {
         System.out.println("Option: " + q.getOpt4());
 
         Scanner scanner = new Scanner(System.in);
-        selection[i] = scanner.nextLine();
-        i++;
-       }
+        String tempSelection = scanner.nextLine();
+        int temp = Integer.parseInt(tempSelection);
 
-       for(String s : selection){
-        System.out.println(s);
-       }
+        if(temp <= question.length + 1 && temp > 0 ){
+            selection[i] = tempSelection;
+            i++;
+        }
+        else{
+            System.err.println("Invalid selection");
+        }
+
+       }    
+    }
+
+    public void getScore(){
+
+        int score = 0;
+
+        for(int i = 0; i < question.length; i++){
+
+            Question que = question[i];
+            String actualAnswer = que.getAnswer();
+            String userAnswer = selection[i];
+
+            if(actualAnswer.equals(userAnswer)){
+                score++;
+            }
+        }
+
+        System.out.println("Total score of the Quiz is: " + score);
     }
 
 }
